@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+    function cargarImagenes() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+    var imagenes=this.responseText;
+    var lista_imagenes=imagenes.split(",");
+    var obj_select=document.createElement("select");
+    for (i=0; i<lista_imagenes.length; i++)
+        {
+        var obj_imagen=document.createElement("img");
+        obj_imagen.src=lista_imagenes[i];
+        /*var obj_option=document.createElement("option");
+        obj_option.innerHTML=lista_imagenes[i];
+        obj_select.appendChild(obj_option);*/
+        document.getElementById("demo").appendChild(obj_imagen)
+        }  
+    //document.getElementById("demo").appendChild(obj_select);
+    }
+  };
+  xhttp.open("GET", "imagenes.txt", true);
+  xhttp.send();
+}
+    </script>
+</head>
+<body  onload="cargarImagenes()">
+<div id="demo">
+</div>
+</body>
+</html>
